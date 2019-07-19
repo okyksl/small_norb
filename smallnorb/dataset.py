@@ -2,6 +2,7 @@ import struct
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.misc
+import imageio
 from tqdm import tqdm
 from os import makedirs
 from os.path import join
@@ -133,8 +134,8 @@ class SmallNORBDataset:
                     image_lt_path = join(split_dir, '{:06d}_{}_{:02d}_lt.jpg'.format(i, category, instance))
                     image_rt_path = join(split_dir, '{:06d}_{}_{:02d}_rt.jpg'.format(i, category, instance))
 
-                    scipy.misc.imsave(image_lt_path, norb_example.image_lt)
-                    scipy.misc.imsave(image_rt_path, norb_example.image_rt)
+                    imageio.imwrite(image_lt_path, norb_example.image_lt)
+                    imageio.imwrite(image_rt_path, norb_example.image_rt)
             print('Done.')
     
     def group_dataset_by_category_and_instance(self, dataset_split):
