@@ -128,11 +128,14 @@ class SmallNORBDataset:
 
                 for i, norb_example in enumerate(self.data[split_name]):
 
-                    category = SmallNORBDataset.categories[norb_example.category]
+                    category = norb_example.category
                     instance = norb_example.instance
+                    azimuth = norb_example.azimuth
+                    elevation = norb_example.elevation
+                    lighting  = norb_example.lighting
 
-                    image_lt_path = join(split_dir, '{:06d}_{}_{:02d}_lt.jpg'.format(i, category, instance))
-                    image_rt_path = join(split_dir, '{:06d}_{}_{:02d}_rt.jpg'.format(i, category, instance))
+                    image_lt_path = join(split_dir, '{:02d}c_{:02d}i_{:02d}l_{:02d}e_{:02d}a_lt.jpg'.format(category, instance, lighting, elevation, azimuth))
+                    image_rt_path = join(split_dir, '{:02d}c_{:02d}i_{:02d}l_{:02d}e_{:02d}a_rt.jpg'.format(category, instance, lighting, elevation, azimuth))
 
                     imageio.imwrite(image_lt_path, norb_example.image_lt)
                     imageio.imwrite(image_rt_path, norb_example.image_rt)
@@ -346,3 +349,4 @@ class SmallNORBDataset:
                     examples[r, c] = info
 
         return examples
+
